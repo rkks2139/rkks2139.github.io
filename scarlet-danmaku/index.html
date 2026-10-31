@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#06130d">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>睦子米魔人 ～ Mutsumi Majin</title>
+<link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game" width="1280" height="960" aria-label="睦子米魔人 游戏画面"></canvas>
+
+    <section id="title-screen" aria-label="主菜单">
+      <div class="title-glow"></div>
+      <div class="title-inner">
+        <div class="title-copy">
+          <div class="kicker"><span></span> JADE BARRAGE / 01</div>
+          <h1>睦子米<br><em>魔人</em></h1>
+          <div class="latin">MUTSUMI&nbsp;&nbsp;MAJIN</div>
+          <p class="lede">碧雾庭园被魔人占据。<br>她用无数张脸铺成弹幕——<br>避开每一张脸，抵达绿月之下。</p>
+
+          <div class="title-menu">
+            <button id="btn-start" class="primary"><span>开始游戏</span><kbd>ENTER</kbd></button>
+            <button id="btn-diff"><span>难度</span><b id="diff-label">普通</b></button>
+            <button id="btn-help"><span>操作说明</span><b>?</b></button>
+            <button id="btn-auto"><span>自动射击</span><b id="auto-label">开</b></button>
+            <button id="btn-music"><span>音乐</span><b id="music-label">开</b></button>
+          </div>
+
+          <div class="title-meta">
+            <span>BEST <b id="best-score">0</b></span>
+            <span>BUILD 9</span>
+            <span class="hint">←→ 难度 · ENTER 开始 · 点击按钮</span>
+          </div>
+        </div>
+
+        <div class="title-visual" aria-hidden="true">
+          <div class="portrait-frame">
+            <img src="assets/mutsumi.webp?v=9" alt="">
+            <div class="portrait-scan"></div>
+            <div class="portrait-tag">TARGET / 01</div>
+          </div>
+          <div class="quote">“每一张脸，<br>都是我的眼睛。”</div>
+          <div class="floating-ring"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="help-screen" class="hidden" aria-label="操作说明">
+      <div class="help-card">
+        <div class="help-head">
+          <span>HOW TO PLAY</span>
+          <button id="btn-help-close" aria-label="关闭">×</button>
+        </div>
+        <h2>操作说明</h2>
+        <div class="help-grid">
+          <div><dt>移动</dt><dd>方向键 / WASD / 左摇杆</dd></div>
+          <div><dt>射击</dt><dd>Z（默认自动射击，无需按住）</dd></div>
+          <div><dt>祓符</dt><dd>X　清空弹幕、无敌并造成伤害</dd></div>
+          <div><dt>低速</dt><dd>按住 Shift　显示判定点</dd></div>
+          <div><dt>暂停</dt><dd>Esc / P</dd></div>
+          <div><dt>擦弹</dt><dd>贴近子弹但不被击中，可得分</dd></div>
+          <div><dt>自动收点</dt><dd>低速移动到画面上方，回收全部道具</dd></div>
+          <div><dt>触屏</dt><dd>画面内拖动移动，右下面板有按钮</dd></div>
+        </div>
+        <p class="help-note">中弹会损失一命并掉落火力；祓符可以救场。<br>每波弹幕期间不中弹、不使用祓符并击破，可获得高额 Bonus。</p>
+        <button id="btn-help-ok" class="primary">知道了</button>
+      </div>
+    </section>
+  </div>
+  <div id="rotate-tip">请横屏游玩</div>
+
+  <script src="js/util.js?v=9"></script>
+  <script src="js/input.js?v=9"></script>
+  <script src="js/audio.js?v=9"></script>
+  <script src="js/art.js?v=9"></script>
+  <script src="js/bullets.js?v=9"></script>
+  <script src="js/player.js?v=9"></script>
+  <script src="js/boss.js?v=9"></script>
+  <script src="js/stage.js?v=9"></script>
+  <script src="js/game.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML 基础速查 · 给你的第一份作业</title>
+  <style>
+    /* CSS：这里只管"长什么样"，HTML 负责"有什么内容" */
+    :root { --ink: #1f2328; --muted: #656d76; --line: #d0d7de; --accent: #0969da; --bg: #f6f8fa; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 2rem 1.25rem 4rem;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.75; color: var(--ink); background: #fff;
+      max-width: 46rem; margin-inline: auto;
+    }
+    h1 { font-size: 1.9rem; margin: 0 0 .25rem; }
+    h2 { font-size: 1.25rem; margin: 2.5rem 0 .75rem; padding-bottom: .3rem; border-bottom: 1px solid var(--line); }
+    h3 { font-size: 1rem; margin: 1.5rem 0 .5rem; color: var(--muted); font-weight: 600; }
+    p, li { color: var(--ink); }
+    a { color: var(--accent); }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .88em;
+           background: var(--bg); padding: .15em .4em; border-radius: 5px; }
+    pre { background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+          padding: 1rem; overflow-x: auto; line-height: 1.6; }
+    pre code { background: none; padding: 0; font-size: .85rem; }
+    .lead { color: var(--muted); margin-top: 0; }
+    .demo { border: 1px dashed var(--line); border-radius: 8px; padding: .75rem 1rem; margin: .5rem 0 1rem; background: #fcfcfd; }
+    .demo::before { content: "预览"; display: block; font-size: .7rem; letter-spacing: .08em;
+                    text-transform: uppercase; color: #8c959f; margin-bottom: .4rem; }
+    table { border-collapse: collapse; width: 100%; margin: .5rem 0 1rem; font-size: .92rem; }
+    th, td { border: 1px solid var(--line); padding: .45rem .7rem; text-align: left; }
+    th { background: var(--bg); font-weight: 600; }
+    nav { margin: 1.5rem 0 0; font-size: .9rem; }
+    nav a { margin-right: .9rem; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    blockquote { margin: 1rem 0; padding: .5rem 1rem; border-left: 3px solid var(--accent);
+                 background: #f6f8fa; color: var(--muted); }
+    button { font: inherit; padding: .4rem .9rem; border: 1px solid var(--line);
+             border-radius: 6px; background: #f6f8fa; cursor: pointer; }
+    button:active { background: #eaeef2; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line);
+             color: var(--muted); font-size: .9rem; }
+    .row { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+  <!-- ① 页头：h1 通常一个页面只用一个 -->
+  <header>
+    <h1>HTML 基础速查</h1>
+    <p class="lead">这一页本身就是 HTML 写的 —— 你可以右键「查看网页源代码」，对照着看。</p>
+  </header>
+
+  <nav>
+    <a href="#skeleton">骨架</a>
+    <a href="#syntax">标签语法</a>
+    <a href="#text">文本</a>
+    <a href="#list">列表</a>
+    <a href="#table">表格</a>
+    <a href="#media">图片与链接</a>
+    <a href="#form">表单</a>
+    <a href="#js">一点点 JS</a>
+  </nav>
+
+  <!-- ② 最小骨架 -->
+  <section id="skeleton">
+    <h2>1. 最小骨架</h2>
+    <p>每个网页都长这样。结构永远是 <code>head</code>（给机器看）+ <code>body</code>（给人看）两部分：</p>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;          &lt;!-- 告诉浏览器用 UTF-8 解码，否则中文乱码 --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;标签页上的标题&lt;/title&gt;   &lt;!-- 出现在浏览器标签和搜索结果里 --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    页面内容放这里
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <blockquote>和 Python 最大的不同：HTML <strong>不是程序</strong>，没有变量、没有循环、没有 if。它只是给一段文字「贴标签」，告诉浏览器哪部分是标题、哪部分是一张图。</blockquote>
+  </section>
+
+  <!-- ③ 标签语法 -->
+  <section id="syntax">
+    <h2>2. 标签语法（记住这一条就够了）</h2>
+    <pre><code>&lt;标签名 属性="值"&gt;内容&lt;/标签名&gt;
+  ↑           ↑        ↑        ↑
+ 开始标签    属性     内容    结束标签（比开始多了 / ）</code></pre>
+    <ul>
+      <li><strong>大部分标签成对出现</strong>：<code>&lt;p&gt;…&lt;/p&gt;</code>、<code>&lt;div&gt;…&lt;/div&gt;</code>。</li>
+      <li><strong>少数「空标签」没有内容</strong>，不写结束标签：<code>&lt;img&gt;</code>、<code>&lt;br&gt;</code>、<code>&lt;hr&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;meta&gt;</code>。</li>
+      <li><strong>属性</strong>写在开始标签里，格式 <code>名字="值"</code>，一个标签可以有多个属性。</li>
+      <li><strong>尖括号本身要用实体</strong>：想显示 <code>&lt;</code> 就写 <code>&amp;lt;</code>，<code>&gt;</code> 写 <code>&amp;gt;</code>，<code>&amp;</code> 写 <code>&amp;amp;</code>。（这就是上面代码块能显示标签的原因）</li>
+      <li><strong>注释</strong>：<code>&lt;!-- 写给人看的话 --&gt;</code>，不会显示在页面上。</li>
+      <li><strong>不区分大小写</strong>，但约定俗成全部小写。</li>
+      <li><strong>缩进是你的朋友</strong>：嵌套关系靠缩进看清楚，跟 Python 一样。</li>
+    </ul>
+    <div class="demo">
+      <p>这是一段 <strong>加粗</strong>、<em>斜体</em>、<code>行内代码</code>、<a href="#">链接</a>，还有 H<sub>2</sub>O 的下标和 E=mc<sup>2</sup> 的上标。<br>这一行是 <code>&lt;br&gt;</code> 换的行。</p>
+    </div>
+    <p>打开这页源码搜 <code>&lt;div class="demo"&gt;</code>，看看上面那段是怎么写的。</p>
+  </section>
+
+  <!-- ④ 文本 -->
+  <section id="text">
+    <h2>3. 标题与段落</h2>
+    <table>
+      <tr><th>标签</th><th>用途</th></tr>
+      <tr><td><code>h1</code> ~ <code>h6</code></td><td>六级标题，<code>h1</code> 最大。按层级用，别按字号用。</td></tr>
+      <tr><td><code>p</code></td><td>段落，浏览器会自动上下留白</td></tr>
+      <tr><td><code>strong</code> / <code>em</code></td><td>强调（粗体 / 斜体），有语义</td></tr>
+      <tr><td><code>span</code></td><td>行内小容器，只用来套一段文字加样式，不换行</td></tr>
+      <tr><td><code>div</code></td><td>块级大容器，用来给一堆东西分组，会换行</td></tr>
+    </table>
+    <div class="demo">
+      <h1 style="font-size:1.6rem;margin:.2rem 0">这是一级标题 h1</h1>
+      <h3 style="margin:.2rem 0;color:#1f2328">这是三级标题 h3</h3>
+      <p style="margin:.2rem 0">这是一个 p 段落。上面那些标题上下的留白，全是浏览器默认样式给的。</p>
+    </div>
+  </section>
+
+  <!-- ⑤ 列表 -->
+  <section id="list">
+    <h2>4. 列表</h2>
+    <pre><code>&lt;ul&gt;                 &lt;!-- 无序列表，点 --&gt;
+  &lt;li&gt;第一项&lt;/li&gt;
+  &lt;li&gt;第二项&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;                 &lt;!-- 有序列表，数字 --&gt;
+  &lt;li&gt;第一步&lt;/li&gt;
+  &lt;li&gt;第二步&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+    <div class="demo">
+      <ul>
+        <li>无序列表项</li>
+        <li>嵌套也行：
+          <ul>
+            <li>这是里层</li>
+          </ul>
+        </li>
+      </ul>
+      <ol>
+        <li>安装 Python</li>
+        <li>写代码</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ⑥ 表格 -->
+  <section id="table">
+    <h2>5. 表格</h2>
+    <p>结构：<code>table &gt; thead/tbody &gt; tr &gt; th/td</code>。<code>tr</code> 是一行，<code>th</code> 是表头格，<code>td</code> 是普通格。</p>
+    <div class="demo">
+      <table>
+        <thead>
+          <tr><th>语言</th><th>用来</th><th>有循环吗</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Python</td><td>逻辑、数据</td><td>有</td></tr>
+          <tr><td>HTML</td><td>结构</td><td>没有</td></tr>
+          <tr><td>CSS</td><td>外观</td><td>没有</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ⑦ 图片与链接 -->
+  <section id="media">
+    <h2>6. 图片与链接</h2>
+    <pre><code>&lt;a href="https://www.python.org" target="_blank"&gt;去官网&lt;/a&gt;
+
+&lt;img src="photo.jpg" alt="一张猫的照片" width="300"&gt;</code></pre>
+    <ul>
+      <li><code>href</code>：链接去哪儿。可以是网址、也可以是同目录的另一个文件（<code>about.html</code>）、还可以是锚点 <code>#section</code>。</li>
+      <li><code>target="_blank"</code>：新标签页打开。</li>
+      <li><code>src</code>：图片路径；<code>alt</code>：图挂了或给读屏软件看的文字，<strong>一定要写</strong>。</li>
+    </ul>
+    <div class="demo">
+      <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML" target="_blank" rel="noopener">MDN 中文 HTML 文档 →</a>
+      <p style="margin:.6rem 0 .2rem">
+        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='120'><rect width='260' height='120' fill='lightblue'/><circle cx='65' cy='60' r='32' fill='teal'/><text x='115' y='72' font-size='22' font-family='sans-serif' fill='dimgray'>一张图</text></svg>"
+             alt="一张蓝色占位图" width="260">
+      </p>
+      <p style="margin:.2rem 0;color:#656d76;font-size:.85rem">上面这张图的 <code>src</code> 是一串 data URI（图直接写在 HTML 里），所以断网也能显示。</p>
+    </div>
+  </section>
+
+  <!-- ⑧ 表单 -->
+  <section id="form">
+    <h2>7. 表单：接收用户输入</h2>
+    <pre><code>&lt;form&gt;
+  &lt;label for="name"&gt;名字&lt;/label&gt;
+  &lt;input id="name" name="name" type="text" placeholder="请输入"&gt;
+
+  &lt;select name="lang"&gt;
+    &lt;option value="py"&gt;Python&lt;/option&gt;
+    &lt;option value="js"&gt;JavaScript&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;textarea name="msg" rows="3"&gt;&lt;/textarea&gt;
+  &lt;button type="submit"&gt;提交&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    <p>常见的 <code>input type</code>：<code>text</code>、<code>password</code>、<code>email</code>、<code>number</code>、<code>date</code>、<code>checkbox</code>、<code>radio</code>、<code>file</code>、<code>color</code>、<code>range</code>。</p>
+    <div class="demo">
+      <form id="demo-form">
+        <div class="row">
+          <label for="name">名字</label>
+          <input id="name" name="name" type="text" placeholder="比如 小明">
+          <label for="lang">语言</label>
+          <select id="lang" name="lang">
+            <option value="python">Python</option>
+            <option value="js">JavaScript</option>
+            <option value="rust">Rust</option>
+          </select>
+          <button type="submit">提交</button>
+        </div>
+      </form>
+      <p id="form-result" style="margin:.6rem 0 0;color:#656d76"></p>
+    </div>
+  </section>
+
+  <!-- ⑨ 一点 JS -->
+  <section id="js">
+    <h2>8. 一点点 JavaScript（可选，先看个感觉）</h2>
+    <p>HTML 是死的。要「点了会变」，就得加 <code>&lt;script&gt;</code>。下面这段就几行：</p>
+    <div class="demo">
+      <button id="counter">点我：0</button>
+      <p style="margin:.5rem 0 0;color:#656d76;font-size:.85rem">逻辑在文件末尾的 &lt;script&gt; 里。</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>下一步：CSS（长什么样）→ JavaScript（会动）。文档永远看 <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank" rel="noopener">MDN</a>，别去搜那些二手教程。</p>
+    <p>想看这页的源码：浏览器里右键 →「查看网页源代码」，或者直接用编辑器打开 <code>html-demo.html</code>。</p>
+  </footer>
+
+  <script>
+    // ① 计数器：查元素 → 改内容
+    let n = 0;
+    const btn = document.getElementById('counter');
+    btn.addEventListener('click', () => {
+      n += 1;
+      btn.textContent = '点我：' + n;
+    });
+
+    // ② 表单：阻止默认的整页跳转，自己处理数据
+    document.getElementById('demo-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      document.getElementById('form-result').textContent =
+        '收到：name=' + (data.get('name') || '(空)') + '，lang=' + data.get('lang');
+    });
+  </script>
+
+</body>
+</html>

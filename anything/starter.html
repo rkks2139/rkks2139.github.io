@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>张三 · 个人主页</title>
+  <style>
+    /* 这一坨是 CSS，先不用理解。重点是下面 <body> 里的标签结构。 */
+    * { box-sizing: border-box; }
+    body {
+      max-width: 44rem; margin: 0 auto; padding: 2rem 1.25rem 3rem;
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.8; color: #1f2328;
+    }
+    header { border-bottom: 1px solid #e5e7eb; padding-bottom: 1rem; }
+    header h1 { margin: 0 0 .2rem; font-size: 1.8rem; }
+    header p { margin: 0; color: #656d76; }
+    nav { margin: 1rem 0 2rem; }
+    nav a { margin-right: 1rem; color: #0969da; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1.15rem; border-left: 3px solid #0969da; padding-left: .6rem; margin: 0 0 .8rem; }
+    article { border: 1px solid #e5e7eb; border-radius: 8px; padding: .8rem 1rem; margin-bottom: .8rem; }
+    article h3 { margin: 0 0 .3rem; font-size: 1rem; }
+    article p { margin: 0 0 .4rem; color: #4b5563; font-size: .92rem; }
+    article a { color: #0969da; font-size: .9rem; }
+    ul { padding-left: 1.2rem; }
+    footer { border-top: 1px solid #e5e7eb; padding-top: 1rem; color: #8c959f; font-size: .88rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ============ 1. 页头：这是谁 ============ -->
+  <header>
+    <h1>张三</h1>
+    <p>写 Python 的，最近在学前端。一句话介绍自己。</p>
+  </header>
+
+  <!-- ============ 2. 导航：页面上有哪几块 ============ -->
+  <nav>
+    <a href="#about">关于</a>
+    <a href="#work">作品</a>
+    <a href="#contact">联系</a>
+  </nav>
+
+  <!-- ============ 3. 主体：一块一块往下堆 ============ -->
+  <main>
+
+    <!-- 每块 = section + 一个 h2 + 若干内容 -->
+    <section id="about">
+      <h2>关于我</h2>
+      <p>这里写两三句自我介绍。段落用 <code>&lt;p&gt;</code>，不要用 <code>&lt;br&gt;</code> 硬换行。</p>
+      <ul>
+        <li>会 Python，能用脚本处理文件</li>
+        <li>刚学会 HTML 的标签</li>
+        <li>下一步打算学 CSS</li>
+      </ul>
+    </section>
+
+    <section id="work">
+      <h2>作品</h2>
+
+      <!-- 每张卡片 = article + h3 + p + 链接 -->
+      <article>
+        <h3>成绩单生成器</h3>
+        <p>用 Python 读数据、拼 HTML、一次性生成一张表格页面。</p>
+        <a href="#">查看代码 →</a>
+      </article>
+
+      <article>
+        <h3>这个页面本身</h3>
+        <p>没用什么框架，就是手写标签，练结构。</p>
+        <a href="#">看看 →</a>
+      </article>
+    </section>
+
+    <section id="contact">
+      <h2>联系</h2>
+      <p>邮箱：<a href="mailto:hi@example.com">hi@example.com</a></p>
+      <p>GitHub：<a href="https://github.com" target="_blank" rel="noopener">@zhangsan</a></p>
+    </section>
+
+  </main>
+
+  <!-- ============ 4. 页脚：版权、备案、小字 ============ -->
+  <footer>
+    <p>© 2025 张三 · 用记事本写的</p>
+  </footer>
+
+</body>
+</html>

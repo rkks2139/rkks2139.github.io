@@ -1,0 +1,9 @@
+{
+  "name": "mutsumi-majin-2",
+  "version": "2.0.0",
+  "private": true,
+  "description": "睦子米魔人 II ～ 三角初华砰砰砰 — a browser bullet hell sequel starring Sakiko Togawa and Uika Misumi",
+  "scripts": {
+    "serve": "python3 -m http.server 8138 --bind 127.0.0.1"
+  }
+}

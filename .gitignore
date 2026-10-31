@@ -1,0 +1,43 @@
+.DS_Store
+**/.DS_Store
+.git/
+**/.git/
+node_modules/
+**/node_modules/
+*.log
+
+# 根目录的重复压缩包；站点下载包保留在 downloads/
+/*.zip
+!downloads/*.zip
+
+# 4kYOU：站点只需要单文件版；完整曲包/源码在 downloads 的 ZIP 里
+pulse4k/*
+!pulse4k/4kYOU.html
+!pulse4k/README.md
+!pulse4k/LICENSE
+!pulse4k/启动游戏.bat
+!pulse4k/启动游戏.command
+
+# 冰之声：站点只需要单文件版
+？！冰冰？！/IceMelody/
+
+# 跑步模拟器：站点只需要单文件版与启动脚本
+跑步模拟器/node_modules/
+跑步模拟器/src/
+跑步模拟器/scripts/
+跑步模拟器/dist/
+跑步模拟器/index.html
+跑步模拟器/package.json
+跑步模拟器/package-lock.json
+
+# 舞动实验室：站点只需要当前版单文件；完整包在 downloads 里
+制片人跳舞/源代码/01-当前版本/*.zip
+制片人跳舞/源代码/02-历史版本/
+制片人跳舞/源代码/03-角色素材/
+制片人跳舞/源代码/04-源码与构建/
+制片人跳舞/源代码/05-封装包/
+制片人跳舞/源代码/06-说明与参考/
+
+# 这两个目录内有独立的 .git，整体排除；站点用 site/ 下的运行时副本
+跑步模拟器/
+制片人跳舞/

@@ -1,0 +1,9 @@
+{
+  "name": "mutsumi-majin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "睦子米魔人 ～ Mutsumi Majin — a jade-themed browser bullet hell game",
+  "scripts": {
+    "serve": "python3 -m http.server 8137 --bind 127.0.0.1"
+  }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#071117">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>睦子米魔人 II ～ 三角初华砰砰砰</title>
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game" width="1280" height="960" aria-label="睦子米魔人 II 游戏画面"></canvas>
+
+    <section id="title-screen" aria-label="主菜单">
+      <div class="title-glow"></div>
+      <div class="title-inner">
+        <div class="title-copy">
+          <div class="kicker"><span></span> MUTSUMI MAJIN II / SAKIKO VS UIKA</div>
+          <h1>三角初华<br><em>砰砰砰</em></h1>
+          <div class="latin">TRIANGLE&nbsp;&nbsp;BANG&nbsp;&nbsp;BANG&nbsp;&nbsp;BANG</div>
+          <p class="lede">丰川祥子收到一条消息：<br>三角初华今晚要来砰砰砰他。<br>躲开所有初华弹幕——每中一弹，<br>就会立刻召唤一只睦子米魔人 midboss。</p>
+
+          <div class="title-menu">
+            <button id="btn-start" class="primary"><span>开始游戏</span><kbd>ENTER</kbd></button>
+            <button id="btn-diff"><span>难度</span><b id="diff-label">普通</b></button>
+            <button id="btn-help"><span>操作说明</span><b>?</b></button>
+            <button id="btn-auto"><span>自动射击</span><b id="auto-label">开</b></button>
+            <button id="btn-music"><span>音乐</span><b id="music-label">开</b></button>
+          </div>
+
+          <div class="title-meta">
+            <span>BEST <b id="best-score">0</b></span>
+            <span>SEQUEL 01</span>
+            <span class="hint">←→ 难度 · ENTER 开始 · 点击按钮</span>
+          </div>
+        </div>
+
+        <div class="title-visual" aria-hidden="true">
+          <div class="portrait-frame">
+            <img src="assets/shoko.webp?v=3" alt="">
+            <div class="portrait-scan"></div>
+            <div class="portrait-tag">PLAYER / SAKIKO</div>
+          </div>
+          <div class="caller-card">
+            <img src="assets/uika.webp?v=3" alt="">
+            <div class="caller-info">
+              <span>INCOMING CALL</span>
+              <strong>三角初华</strong>
+              <em>3 MISSED BANGS</em>
+            </div>
+          </div>
+          <div class="quote">“祥子，<br>我来砰砰砰你了。”</div>
+          <div class="floating-ring"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="help-screen" class="hidden" aria-label="操作说明">
+      <div class="help-card">
+        <div class="help-head">
+          <span>HOW TO PLAY</span>
+          <button id="btn-help-close" aria-label="关闭">×</button>
+        </div>
+        <h2>操作说明</h2>
+        <div class="help-grid">
+          <div><dt>移动</dt><dd>方向键 / WASD / 左摇杆</dd></div>
+          <div><dt>射击</dt><dd>Z（默认自动射击，无需按住）</dd></div>
+          <div><dt>祓符</dt><dd>X　清空弹幕、无敌并造成伤害</dd></div>
+          <div><dt>低速</dt><dd>按住 Shift　显示判定点</dd></div>
+          <div><dt>暂停</dt><dd>Esc / P</dd></div>
+          <div><dt>擦弹</dt><dd>贴近子弹但不被击中，可得分</dd></div>
+          <div><dt>自动收点</dt><dd>低速移动到画面上方，回收全部道具</dd></div>
+          <div><dt>触屏</dt><dd>画面内拖动移动，右下面板有按钮</dd></div>
+        </div>
+        <p class="help-note">本作没有生命 / 残机，吃弹不会死。<br>每中一弹，只会立刻召唤一只睦子米魔人 midboss；<br>击破全部三个三角初华即可通关，midboss 不强制击破，但它们会一直开火。</p>
+        <button id="btn-help-ok" class="primary">知道了</button>
+      </div>
+    </section>
+  </div>
+  <div id="rotate-tip">请横屏游玩</div>
+
+  <script src="js/util.js?v=3"></script>
+  <script src="js/input.js?v=3"></script>
+  <script src="js/audio.js?v=3"></script>
+  <script src="js/art.js?v=3"></script>
+  <script src="js/bullets.js?v=3"></script>
+  <script src="js/player.js?v=3"></script>
+  <script src="js/boss.js?v=3"></script>
+  <script src="js/stage.js?v=3"></script>
+  <script src="js/penalty.js?v=3"></script>
+  <script src="js/game.js?v=3"></script>
+</body>
+</html>
