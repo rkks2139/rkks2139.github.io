@@ -156,13 +156,15 @@
 
   const HERO_ORDER = ['dash', 'shiver', 'blast', 'wall'];
 
-  const UPGRADE_COSTS = [60, 95];
+  const MAX_COPIES = 3;
+  const MAX_LEVEL = 5;
+  const UPGRADE_COSTS = [70, 120, 190, 300];
 
   const ENEMY_DEFS = {
     fluff: {
       name: '飘絮',
-      hp: 48,
-      speed: 58,
+      hp: 70,
+      speed: 62,
       radius: 13,
       reward: 6,
       coreDamage: 1,
@@ -170,18 +172,18 @@
     },
     puff: {
       name: '绒球',
-      hp: 215,
-      speed: 38,
+      hp: 360,
+      speed: 41,
       radius: 21,
       reward: 13,
       coreDamage: 2,
-      armor: .9,
+      armor: .84,
       color: '#e8a66c'
     },
     dart: {
       name: '疾刺',
-      hp: 72,
-      speed: 92,
+      hp: 105,
+      speed: 100,
       radius: 11,
       reward: 8,
       coreDamage: 1,
@@ -189,8 +191,8 @@
     },
     bee: {
       name: '蜂媒',
-      hp: 125,
-      speed: 70,
+      hp: 200,
+      speed: 76,
       radius: 15,
       reward: 10,
       coreDamage: 2,
@@ -199,22 +201,22 @@
     },
     elite: {
       name: '蕊卫',
-      hp: 980,
-      speed: 40,
+      hp: 1900,
+      speed: 43,
       radius: 29,
       reward: 45,
       coreDamage: 3,
-      armor: .88,
+      armor: .78,
       color: '#d98863'
     },
     boss: {
       name: '山木 · 万蕊母株',
-      hp: 4700,
+      hp: 32000,
       speed: 29,
       radius: 46,
       reward: 140,
-      coreDamage: 7,
-      armor: .86,
+      coreDamage: 8,
+      armor: .72,
       boss: true,
       color: '#e8795c'
     }
@@ -224,75 +226,77 @@
     {
       title: '风起，飘絮先到',
       sub: '轻飘飘的，但它真的会让人打喷嚏',
-      groups: [{ type: 'fluff', count: 6, gap: .9, at: .4 }]
+      groups: [{ type: 'fluff', count: 7, gap: .8, at: .4 }]
     },
     {
       title: '一团毛茸茸',
       sub: '绒球走得慢，皮倒是很厚',
       groups: [
-        { type: 'fluff', count: 8, gap: .72, at: .4 },
-        { type: 'puff', count: 2, gap: 3.2, at: 3.5 }
+        { type: 'fluff', count: 9, gap: .65, at: .4 },
+        { type: 'puff', count: 3, gap: 2.8, at: 3.5 }
       ]
     },
     {
       title: '逆风疾行',
       sub: '疾刺贴着地面窜过来了',
       groups: [
-        { type: 'fluff', count: 8, gap: .65, at: .3 },
-        { type: 'dart', count: 5, gap: 1.1, at: 3.1 }
+        { type: 'fluff', count: 10, gap: .58, at: .3 },
+        { type: 'dart', count: 6, gap: .95, at: 3.1 }
       ]
     },
     {
       title: '蜂媒引路',
       sub: '会飞的花粉，一样得守',
       groups: [
-        { type: 'puff', count: 4, gap: 2.4, at: .4 },
-        { type: 'bee', count: 3, gap: 2.2, at: 4.4 },
-        { type: 'fluff', count: 8, gap: .62, at: 7.5 }
+        { type: 'puff', count: 5, gap: 2.1, at: .4 },
+        { type: 'bee', count: 4, gap: 1.8, at: 4.4 },
+        { type: 'fluff', count: 9, gap: .55, at: 7.5 }
       ]
     },
     {
       title: '过敏季高峰',
       sub: '口罩不够用了，靠人吧',
       groups: [
-        { type: 'fluff', count: 12, gap: .48, at: .3 },
-        { type: 'puff', count: 5, gap: 2, at: 4.4 },
-        { type: 'dart', count: 4, gap: 1, at: 8.2 }
+        { type: 'fluff', count: 14, gap: .42, at: .3 },
+        { type: 'puff', count: 7, gap: 1.7, at: 4.4 },
+        { type: 'dart', count: 5, gap: .9, at: 8.2 }
       ]
     },
     {
       title: '嗡嗡嗡',
       sub: '蜂媒成群，注意后排',
       groups: [
-        { type: 'bee', count: 6, gap: 1.25, at: .4 },
-        { type: 'puff', count: 5, gap: 2.1, at: 3.4 },
-        { type: 'fluff', count: 8, gap: .55, at: 7.2 }
+        { type: 'bee', count: 7, gap: 1.05, at: .4 },
+        { type: 'puff', count: 6, gap: 1.8, at: 3.4 },
+        { type: 'fluff', count: 10, gap: .48, at: 7.2 }
       ]
     },
     {
       title: '风道拥堵',
       sub: '数量取胜？那就守得更紧一点',
       groups: [
-        { type: 'dart', count: 11, gap: .52, at: .3 },
-        { type: 'puff', count: 7, gap: 1.5, at: 3.8 }
+        { type: 'dart', count: 14, gap: .44, at: .3 },
+        { type: 'puff', count: 9, gap: 1.3, at: 3.8 },
+        { type: 'elite', count: 1, gap: 1, at: 9.5 }
       ]
     },
     {
       title: '蕊卫巡视',
       sub: '母株派来了它的近卫',
       groups: [
-        { type: 'elite', count: 1, gap: 1, at: .5 },
-        { type: 'fluff', count: 9, gap: .58, at: 1.8 },
-        { type: 'puff', count: 4, gap: 2.2, at: 5.2 }
+        { type: 'elite', count: 2, gap: 3.5, at: .5 },
+        { type: 'fluff', count: 12, gap: .5, at: 1.8 },
+        { type: 'puff', count: 7, gap: 1.8, at: 5.2 }
       ]
     },
     {
       title: '漫天飞絮',
       sub: '最后一轮试探，别松手',
       groups: [
-        { type: 'bee', count: 8, gap: .82, at: .3 },
-        { type: 'dart', count: 9, gap: .62, at: 3.2 },
-        { type: 'puff', count: 7, gap: 1.5, at: 6.5 }
+        { type: 'bee', count: 9, gap: .7, at: .3 },
+        { type: 'dart', count: 12, gap: .52, at: 3.2 },
+        { type: 'puff', count: 9, gap: 1.3, at: 6.5 },
+        { type: 'elite', count: 3, gap: 3.5, at: 11 }
       ]
     },
     {
@@ -300,9 +304,10 @@
       sub: '山木花粉的本体，来了',
       groups: [
         { type: 'boss', count: 1, gap: 1, at: .6 },
-        { type: 'fluff', count: 12, gap: .45, at: 2.2 },
-        { type: 'bee', count: 6, gap: 1.1, at: 5 },
-        { type: 'puff', count: 5, gap: 1.7, at: 8.5 }
+        { type: 'fluff', count: 24, gap: .28, at: 2.2 },
+        { type: 'bee', count: 12, gap: .7, at: 5 },
+        { type: 'puff', count: 12, gap: 1.1, at: 8.5 },
+        { type: 'elite', count: 3, gap: 4, at: 13 }
       ]
     }
   ];
@@ -313,7 +318,11 @@
     { x: 600, y: 345 },
     { x: 618, y: 560 },
     { x: 888, y: 390 },
-    { x: 1092, y: 465 }
+    { x: 1092, y: 465 },
+    { x: 330, y: 540 },
+    { x: 850, y: 295 },
+    { x: 1088, y: 230 },
+    { x: 1105, y: 600 }
   ];
 
   const PAD_RADIUS = 43;
@@ -646,14 +655,17 @@
     dew: 230,
     kills: 0,
     totalWaves: WAVES.length,
-    prep: 13,
-    prepMax: 13,
+    prep: 16,
+    prepMax: 16,
     bannerTimer: 0,
     clearTimer: 0,
     waveTime: 0,
     queue: [],
     enemies: [],
     heroes: new Map(),
+    heroLevels: Object.fromEntries(HERO_ORDER.map(k => [k, 1])),
+    skillCds: Object.fromEntries(HERO_ORDER.map(k => [k, 0])),
+    skillCdMax: Object.fromEntries(HERO_ORDER.map(k => [k, HERO_DEFS[k].skillCd])),
     projectiles: [],
     particles: [],
     rings: [],
@@ -687,8 +699,37 @@
 
   const cardEls = {};
   const skillEls = {};
-  const skillCdCache = {};
   const bossRef = { active: false };
+  let heroSeq = 0;
+
+  function unitsOf(key) {
+    const out = [];
+    for (const h of game.heroes.values()) if (h.key === key) out.push(h);
+    return out;
+  }
+
+  function countOf(key) {
+    let n = 0;
+    for (const h of game.heroes.values()) if (h.key === key) n++;
+    return n;
+  }
+
+  function nextCopyCost(key) {
+    const n = countOf(key);
+    if (n >= MAX_COPIES) return null;
+    return Math.round((HERO_DEFS[key].cost * (1 + n * .55)) / 5) * 5;
+  }
+
+  function upgradeCostOf(key) {
+    const lvl = game.heroLevels[key] || 1;
+    return lvl < MAX_LEVEL ? UPGRADE_COSTS[lvl - 1] : null;
+  }
+
+  function applySkillMax(key) {
+    const lvl = game.heroLevels[key] || 1;
+    game.skillCdMax[key] = HERO_DEFS[key].skillCd * (1 - .08 * (lvl - 1));
+    game.skillCds[key] = Math.min(game.skillCds[key] || 0, game.skillCdMax[key]);
+  }
 
   function createMotes() {
     game.motes = [];
@@ -738,6 +779,11 @@
     game.queue = [];
     game.enemies.length = 0;
     game.heroes.clear();
+    for (const key of HERO_ORDER) {
+      game.heroLevels[key] = 1;
+      game.skillCds[key] = 0;
+      game.skillCdMax[key] = HERO_DEFS[key].skillCd;
+    }
     game.projectiles.length = 0;
     game.particles.length = 0;
     game.rings.length = 0;
@@ -811,13 +857,17 @@
         <div class="portrait-wrap">
           <canvas aria-hidden="true"></canvas>
           <span class="level-badge empty">待命</span>
+          <span class="copy-badge" hidden></span>
         </div>
         <div class="hero-copy">
           <div class="hero-name-row"><b>${def.name}</b><span class="hero-role">${def.role}</span></div>
           <span class="hero-skill-name"><i></i>${def.skill}</span>
           <div class="hero-bottom">
             <span class="price"><i></i><b>${def.cost}</b></span>
-            <button class="mini-action" type="button">布阵</button>
+            <span class="action-group">
+              <button class="mini-action reinforce" type="button" hidden>+75</button>
+              <button class="mini-action upgrade" type="button">布阵</button>
+            </span>
           </div>
         </div>`;
       el.heroRoster.appendChild(card);
@@ -833,19 +883,27 @@
       card.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          e.stopPropagation();
           onHeroCard(key);
         }
       });
       bindHintHover(card, `<strong>${def.name}</strong> · ${def.skillDesc}`);
-      const action = card.querySelector('.mini-action');
-      action.addEventListener('click', e => {
+      const upgradeBtn = card.querySelector('.mini-action.upgrade');
+      const reinforceBtn = card.querySelector('.mini-action.reinforce');
+      upgradeBtn.addEventListener('click', e => {
         e.stopPropagation();
-        const h = game.heroes.get(key);
-        if (h) tryUpgrade(key);
+        if (countOf(key) > 0) tryUpgrade(key);
         else {
           selectHero(key);
           showToast(`选好花台，让${def.name}就位`);
         }
+      });
+      reinforceBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        const cost = nextCopyCost(key);
+        if (cost == null) return;
+        selectHero(key);
+        showToast(`再点一处空花台，增援一名${def.name}（${cost} 露）`);
       });
     }
   }
@@ -871,7 +929,6 @@
       b.addEventListener('click', () => castSkill(key));
       el.skillDock.appendChild(b);
       skillEls[key] = b;
-      skillCdCache[key] = 0;
     }
   }
 
@@ -993,29 +1050,55 @@
       const card = cardEls[key];
       if (!card) continue;
       const def = HERO_DEFS[key];
-      const h = game.heroes.get(key);
+      const count = countOf(key);
+      const level = game.heroLevels[key] || 1;
       const badge = card.querySelector('.level-badge');
+      const copyBadge = card.querySelector('.copy-badge');
       const price = card.querySelector('.price b');
-      bindHintHover(card, `<strong>${def.name}</strong> · ${def.skillDesc}`);
-      const action = card.querySelector('.mini-action');
-      let cost = def.cost;
-      if (h) {
-        cost = h.level < 3 ? UPGRADE_COSTS[h.level - 1] : 0;
-        badge.textContent = 'Lv.' + h.level;
-        badge.classList.remove('empty');
-        price.textContent = h.level < 3 ? cost : 'MAX';
-        action.textContent = h.level < 3 ? '升级' : '满级';
-        action.disabled = h.level >= 3 || game.dew < cost;
-        action.classList.toggle('max', h.level >= 3);
-      } else {
+      const upgradeBtn = card.querySelector('.mini-action.upgrade');
+      const reinforceBtn = card.querySelector('.mini-action.reinforce');
+      const upCost = upgradeCostOf(key);
+      const copyCost = nextCopyCost(key);
+
+      if (count === 0) {
         badge.textContent = '待命';
         badge.classList.add('empty');
+        copyBadge.hidden = true;
         price.textContent = def.cost;
-        action.textContent = '布阵';
-        action.disabled = false;
-        action.classList.remove('max');
+        upgradeBtn.textContent = '布阵';
+        upgradeBtn.disabled = false;
+        upgradeBtn.classList.remove('max');
+        reinforceBtn.hidden = true;
+        card.classList.toggle('poor', game.dew < def.cost);
+        card.setAttribute('aria-label', `${def.name}，${def.skill}，布阵消耗 ${def.cost} 露珠`);
+      } else {
+        badge.textContent = 'Lv.' + level;
+        badge.classList.remove('empty');
+        copyBadge.hidden = false;
+        copyBadge.textContent = '×' + count;
+        if (upCost != null) {
+          price.textContent = upCost;
+          upgradeBtn.textContent = '升级';
+          upgradeBtn.disabled = game.dew < upCost;
+          upgradeBtn.classList.remove('max');
+        } else {
+          price.textContent = 'MAX';
+          upgradeBtn.textContent = '满级';
+          upgradeBtn.disabled = true;
+          upgradeBtn.classList.add('max');
+        }
+        if (copyCost != null) {
+          reinforceBtn.hidden = false;
+          reinforceBtn.textContent = '+' + copyCost;
+          reinforceBtn.disabled = game.dew < copyCost;
+          reinforceBtn.title = `增援一名${def.name}（${copyCost} 露）`;
+        } else {
+          reinforceBtn.hidden = true;
+        }
+        const poor = (upCost != null && game.dew < upCost) && (copyCost != null && game.dew < copyCost);
+        card.classList.toggle('poor', poor);
+        card.setAttribute('aria-label', `${def.name} Lv.${level}，场上 ${count} 名，升级 ${upCost == null ? '已满级' : upCost + ' 露珠'}，增援 ${copyCost == null ? '已满员' : copyCost + ' 露珠'}`);
       }
-      card.classList.toggle('poor', game.dew < (h ? (h.level < 3 ? cost : 0) : cost));
       card.classList.toggle('selected', game.selectedHero === key);
     }
   }
@@ -1023,20 +1106,20 @@
   function updateSkillCards() {
     for (const key of HERO_ORDER) {
       const b = skillEls[key];
-      const h = game.heroes.get(key);
-      const def = HERO_DEFS[key];
+      const count = countOf(key);
+      const level = game.heroLevels[key] || 1;
       const small = b.querySelector('.skill-copy small');
-      if (!h) {
+      if (count === 0) {
         b.classList.add('locked');
         b.classList.remove('ready');
         small.textContent = '未布阵';
       } else {
         b.classList.remove('locked');
-        if (h.skillCd > 0) {
+        if (game.skillCds[key] > 0) {
           small.textContent = '冷却中';
           b.classList.remove('ready');
         } else {
-          small.textContent = `就绪 · Lv.${h.level}`;
+          small.textContent = `就绪 · Lv.${level}`;
           b.classList.add('ready');
         }
       }
@@ -1047,14 +1130,14 @@
   function updateCooldownUi() {
     for (const key of HERO_ORDER) {
       const b = skillEls[key];
-      const h = game.heroes.get(key);
       if (!b) continue;
-      const cd = h ? h.skillCd : 0;
-      const max = h ? h.skillCdMax : 1;
-      const frac = h ? clamp(cd / max, 0, 1) : 0;
+      const has = countOf(key) > 0;
+      const cd = has ? game.skillCds[key] : 0;
+      const max = game.skillCdMax[key] || 1;
+      const frac = has ? clamp(cd / max, 0, 1) : 0;
       b.style.setProperty('--cd', frac.toFixed(3));
       const num = b.querySelector('.cd-num');
-      if (cd > 0 && h) {
+      if (cd > 0 && has) {
         b.classList.add('on-cd');
         num.textContent = cd >= 10 ? Math.ceil(cd) : Math.ceil(cd * 10) / 10;
       } else {
@@ -1202,9 +1285,9 @@
 
   function findHeroAt(x, y) {
     let best = null, bd = 52 * 52;
-    for (const [key, h] of game.heroes) {
+    for (const h of game.heroes.values()) {
       const d = dist2(x, y, h.x, h.y - 26);
-      if (d < bd) { bd = d; best = key; }
+      if (d < bd) { bd = d; best = h; }
     }
     return best;
   }
@@ -1223,9 +1306,14 @@
       setHint('已取消选择');
     } else {
       game.selectedHero = key;
-      const h = game.heroes.get(key);
-      if (h) {
-        setHint(`已选中 <strong>${def.name}</strong> · 技能「${def.skill}」已就绪 · 点击升级`);
+      const count = countOf(key);
+      const copyCost = nextCopyCost(key);
+      if (count > 0) {
+        if (copyCost != null) {
+          setHint(`已选中 <strong>${def.name}</strong> ×${count} · 点击空花台增援（${copyCost} 露）· 升级可在卡片上进行`);
+        } else {
+          setHint(`已选中 <strong>${def.name}</strong> ×${count} · 已满员 · 点击卡片升级`);
+        }
       } else {
         setHint(`已选中 <strong>${def.name}</strong> · 点击发光花台布阵 · 消耗 ${def.cost} 露`);
       }
@@ -1241,90 +1329,99 @@
     if (!key) return;
     const def = HERO_DEFS[key];
     if (padIndex < 0 || padIndex >= PADS.length) return;
-    for (const [, h] of game.heroes) {
+    for (const h of game.heroes.values()) {
       if (h.pad === padIndex) {
         showToast('这个花台已经有守林人了', 'bad');
         return;
       }
     }
-    if (game.heroes.has(key)) {
-      showToast(`${def.name}已经在场上了`, 'bad');
+    const count = countOf(key);
+    if (count >= MAX_COPIES) {
+      showToast(`${def.name}已经满员（${MAX_COPIES} 名）`, 'bad');
       return;
     }
-    if (game.dew < def.cost) {
-      showToast(`露珠不够，还差 ${def.cost - game.dew}`, 'bad');
+    const cost = nextCopyCost(key);
+    if (game.dew < cost) {
+      showToast(`露珠不够，还差 ${cost - game.dew}`, 'bad');
       AudioSys.sfx('error');
       return;
     }
-    game.dew -= def.cost;
+    game.dew -= cost;
     const p = PADS[padIndex];
     const h = {
+      id: def.key + '-' + (++heroSeq),
       key,
       pad: padIndex,
       x: p.x,
       y: p.y,
-      level: 1,
+      level: game.heroLevels[key] || 1,
       attackCd: .3,
       attackAnim: 0,
-      skillCd: 0,
-      skillCdMax: def.skillCd,
       facing: p.x < 640 ? 1 : -1,
       target: null,
       combo: 0,
       glow: 0,
       deployAnim: 1
     };
-    game.heroes.set(key, h);
+    game.heroes.set(h.id, h);
     game.selectedHero = null;
     game.uiDirty = true;
     AudioSys.sfx('deploy');
     spawnBurst(p.x, p.y - 28, def.color, 22, { speed: 110, size: 3, life: .8, gravity: -20 });
     addRing(p.x, p.y - 22, 20, 82, .55, def.color, 3);
-    addText(p.x, p.y - 76, '就位！', def.colorSoft, 17, 1.1);
-    showToast(`${def.name}：“${def.quote}”`, 'good');
-    setHint(`按 <strong>${def.skillKey}</strong> 释放「${def.skill}」 · 再次点击卡片可查看射程`);
+    addText(p.x, p.y - 76, count > 0 ? '增援！' : '就位！', def.colorSoft, 17, 1.1);
+    showToast(count > 0 ? `${def.name}第 ${count + 1} 名就位 · 绝技共享冷却` : `${def.name}：“${def.quote}”`, 'good');
+    const next = nextCopyCost(key);
+    setHint(`按 <strong>${def.skillKey}</strong> 释放「${def.skill}」${next != null ? ` · 再点空花台可增援（${next} 露）` : ''}`);
     syncHud(true);
   }
 
   function tryUpgrade(key) {
-    const h = game.heroes.get(key);
-    if (!h) return;
     const def = HERO_DEFS[key];
-    if (h.level >= 3) {
+    const units = unitsOf(key);
+    if (!units.length) {
+      showToast(`先让${def.name}站上花台`, 'bad');
+      AudioSys.sfx('error');
+      return;
+    }
+    const level = game.heroLevels[key] || 1;
+    if (level >= MAX_LEVEL) {
       showToast(`${def.name}已经满级了`, 'good');
       return;
     }
-    const cost = UPGRADE_COSTS[h.level - 1];
+    const cost = UPGRADE_COSTS[level - 1];
     if (game.dew < cost) {
       showToast(`升级还差 ${cost - game.dew} 露珠`, 'bad');
       AudioSys.sfx('error');
       return;
     }
     game.dew -= cost;
-    h.level++;
-    h.skillCdMax = def.skillCd * (1 - .08 * (h.level - 1));
-    h.skillCd = Math.min(h.skillCd, h.skillCdMax);
+    game.heroLevels[key] = level + 1;
+    applySkillMax(key);
+    for (const h of units) h.level = level + 1;
     AudioSys.sfx('upgrade');
-    spawnBurst(h.x, h.y - 30, def.color, 27, { speed: 130, size: 3.2, life: .9, gravity: -30 });
-    addRing(h.x, h.y - 26, 18, 92, .6, def.colorSoft, 3.5);
-    addText(h.x, h.y - 86, 'Lv.' + h.level, def.colorSoft, 18, 1.2);
-    showToast(`${def.name}升到 Lv.${h.level}，攻击与绝技都更强了`, 'good');
+    for (const h of units) {
+      spawnBurst(h.x, h.y - 30, def.color, 18, { speed: 120, size: 3, life: .8, gravity: -30 });
+      addRing(h.x, h.y - 26, 18, 92, .6, def.colorSoft, 3.5);
+      addText(h.x, h.y - 86, 'Lv.' + (level + 1), def.colorSoft, 16, 1.1);
+    }
+    showToast(`${def.name}全体升到 Lv.${level + 1}，攻击与绝技都更强了`, 'good');
     game.uiDirty = true;
     syncHud(true);
   }
 
   function castSkill(key) {
     if (game.screen !== 'playing' || game.paused) return;
-    const h = game.heroes.get(key);
     const def = HERO_DEFS[key];
-    if (!h) {
+    const units = unitsOf(key);
+    if (!units.length) {
       showToast(`先让${def.name}站上花台`, 'bad');
       AudioSys.sfx('error');
       selectHero(key);
       return;
     }
-    if (h.skillCd > 0) {
-      showToast(`「${def.skill}」冷却中，还需 ${Math.ceil(h.skillCd)} 秒`, 'bad');
+    if (game.skillCds[key] > 0) {
+      showToast(`「${def.skill}」冷却中，还需 ${Math.ceil(game.skillCds[key])} 秒`, 'bad');
       AudioSys.sfx('error');
       return;
     }
@@ -1334,22 +1431,15 @@
       return;
     }
 
-    let target = null;
-    if (key === 'dash') {
-      target = mostAdvancedEnemy();
-    } else if (key === 'wall') {
-      target = mostAdvancedEnemyWithin(h, def.skillRange);
-    } else {
-      target = densestEnemyNear(h, def.skillRange, 96);
-    }
-
-    if (!target) {
+    const picked = pickSkillCaster(key, def, units);
+    if (!picked) {
       showToast(`「${def.skill}」范围内没有花粉`, 'bad');
       AudioSys.sfx('error');
       return;
     }
-
-    h.skillCd = h.skillCdMax;
+    const h = picked.caster;
+    const target = picked.target;
+    game.skillCds[key] = game.skillCdMax[key];
     h.glow = 1;
     game.castCount++;
     game.uiDirty = true;
@@ -1398,6 +1488,46 @@
       }
       score += e.dist / PATH_LEN * .4;
       if (score > bestScore) { bestScore = score; best = e; }
+    }
+    return best;
+  }
+
+  function clusterScoreAt(center, radius) {
+    let score = 0;
+    for (const e of game.enemies) {
+      if (e.dead) continue;
+      if (dist(e.x, e.y, center.x, center.y) < radius) {
+        score += 1 + (e.hp / e.maxHp) * .65 + (e.boss ? 2.5 : 0);
+      }
+    }
+    return score;
+  }
+
+  function pickSkillCaster(key, def, units) {
+    if (key === 'dash') {
+      const target = mostAdvancedEnemy();
+      if (!target) return null;
+      let caster = units[0], best = Infinity;
+      for (const h of units) {
+        const d = dist(h.x, h.y, target.x, target.y);
+        if (d < best) { best = d; caster = h; }
+      }
+      return { caster, target };
+    }
+    if (key === 'wall') {
+      let best = null;
+      for (const h of units) {
+        const target = mostAdvancedEnemyWithin(h, def.skillRange);
+        if (target && (!best || target.dist > best.target.dist)) best = { caster: h, target };
+      }
+      return best;
+    }
+    let best = null, bestScore = -1;
+    for (const h of units) {
+      const target = densestEnemyNear(h, def.skillRange, 96);
+      if (!target) continue;
+      const score = clusterScoreAt(target, 96) + target.dist / PATH_LEN * .3;
+      if (score > bestScore) { bestScore = score; best = { caster: h, target }; }
     }
     return best;
   }
@@ -1577,8 +1707,9 @@
     let speed = e.speed;
     if (game.time < e.slowUntil) speed *= e.slowFactor;
     // 墙墙的被动：身边的花粉莫名走得慢
-    const wallHero = game.heroes.get('wall');
-    if (wallHero && dist(e.x, e.y, wallHero.x, wallHero.y) < 155) speed *= .88;
+    for (const h of game.heroes.values()) {
+      if (h.key === 'wall' && dist(e.x, e.y, h.x, h.y) < 155) { speed *= .88; break; }
+    }
     return speed;
   }
 
@@ -1678,18 +1809,23 @@
       }
     }
 
-    // heroes
-    for (const [, h] of game.heroes) {
-      if (h.deployAnim > 0) h.deployAnim = Math.max(0, h.deployAnim - dt * 2.8);
-      if (h.attackAnim > 0) h.attackAnim = Math.max(0, h.attackAnim - dt * 4.6);
-      if (h.glow > 0) h.glow = Math.max(0, h.glow - dt * 2.2);
-      if (h.skillCd > 0) {
-        h.skillCd = Math.max(0, h.skillCd - dt);
-        if (h.skillCd === 0) {
-          addRing(h.x, h.y - 22, 10, 40, .35, HERO_DEFS[h.key].colorSoft, 2);
+    // type-wide skill cooldowns
+    for (const key of HERO_ORDER) {
+      if (game.skillCds[key] > 0) {
+        game.skillCds[key] = Math.max(0, game.skillCds[key] - dt);
+        if (game.skillCds[key] === 0) {
+          const first = unitsOf(key)[0];
+          if (first) addRing(first.x, first.y - 22, 10, 40, .35, HERO_DEFS[key].colorSoft, 2);
           game.uiDirty = true;
         }
       }
+    }
+
+    // heroes
+    for (const h of game.heroes.values()) {
+      if (h.deployAnim > 0) h.deployAnim = Math.max(0, h.deployAnim - dt * 2.8);
+      if (h.attackAnim > 0) h.attackAnim = Math.max(0, h.attackAnim - dt * 4.6);
+      if (h.glow > 0) h.glow = Math.max(0, h.glow - dt * 2.2);
       h.attackCd -= dt;
       if (game.phase === 'wave' || game.enemies.length) {
         updateHeroAttack(h, dt);
@@ -1850,7 +1986,7 @@
       if (e.type === 'boss') {
         e.spawnTimer -= dt;
         if (e.spawnTimer <= 0 && e.dist < PATH_LEN - 120) {
-          e.spawnTimer = 5.2;
+          e.spawnTimer = 3.6;
           spawnEnemy('fluff', true, Math.max(0, e.dist - 16 - Math.random() * 28));
           addRing(e.x, e.y - 10, 15, 70, .5, '#f6c27c', 3);
         }
@@ -1975,9 +2111,9 @@
   function spawnEnemy(type, fromBoss, atDist) {
     const base = ENEMY_DEFS[type];
     if (!base) return;
-    const waveScale = 1 + (game.wave - 1) * .115;
+    const waveScale = 1 + (game.wave - 1) * .42;
     const hpScale = type === 'boss' ? 1 : waveScale;
-    const speedScale = 1 + (game.wave - 1) * .01;
+    const speedScale = 1 + (game.wave - 1) * .022;
     const e = {
       id: Math.random().toString(36).slice(2),
       type,
@@ -2261,7 +2397,7 @@
     drawSpawnGate();
     drawSelection();
 
-    for (const [, h] of game.heroes) drawHeroOnField(h, now);
+    for (const h of game.heroes.values()) drawHeroOnField(h, now);
     drawGhosts();
 
     const sorted = game.enemies.slice().sort((a, b) => (a.baseY || a.y) - (b.baseY || b.y));
@@ -2385,7 +2521,7 @@
       const p = PADS[i];
       const occupied = deployed.has(i);
       const hover = game.hoverPad === i;
-      const available = selected && !occupied && !game.heroes.has(selected);
+      const available = selected && !occupied && countOf(selected) < MAX_COPIES;
       const pulse = .5 + .5 * Math.sin(game.realTime * 2.4 + i * .8);
 
       ctx.save();
@@ -2474,20 +2610,21 @@
     }
 
     // deployment ghost
-    if (game.selectedHero && !game.heroes.has(game.selectedHero) && game.hoverPad >= 0 && !deployed.has(game.hoverPad)) {
+    if (game.selectedHero && countOf(game.selectedHero) < MAX_COPIES && game.hoverPad >= 0 && !deployed.has(game.hoverPad)) {
       const def = HERO_DEFS[game.selectedHero];
       const p = PADS[game.hoverPad];
-      const can = game.dew >= def.cost;
-      drawRangeCircle(p.x, p.y, def.range, can ? def.color : '#ff8b6e', .13, [5, 7]);
+      const cost = nextCopyCost(game.selectedHero);
+      const can = game.dew >= cost;
+      drawRangeCircle(p.x, p.y, def.range + ((game.heroLevels[game.selectedHero] || 1) - 1) * 13, can ? def.color : '#ff8b6e', .13, [5, 7]);
       ctx.save();
       ctx.globalAlpha = .58;
-      drawHero(ctx, game.selectedHero, p.x, p.y + 2, { scale: 1, t: game.realTime, facing: p.x < 640 ? 1 : -1, attack: 0 });
+      drawHero(ctx, game.selectedHero, p.x, p.y + 2, { scale: 1.14, t: game.realTime, facing: p.x < 640 ? 1 : -1, attack: 0 });
       ctx.restore();
       ctx.save();
       ctx.textAlign = 'center';
       ctx.font = '700 10px "PingFang SC", sans-serif';
       ctx.fillStyle = can ? 'rgba(233,247,210,.9)' : 'rgba(255,150,120,.95)';
-      ctx.fillText(can ? `${def.name} · ${def.cost} 露` : `还差 ${def.cost - game.dew} 露`, p.x, p.y + 66);
+      ctx.fillText(can ? `${def.name}${countOf(game.selectedHero) ? ' · 增援' : ''} · ${cost} 露` : `还差 ${cost - game.dew} 露`, p.x, p.y + 66);
       ctx.restore();
     }
   }
@@ -2508,26 +2645,28 @@
 
   function drawSelection() {
     if (!game.selectedHero) return;
-    const h = game.heroes.get(game.selectedHero);
-    if (!h) return;
-    const def = HERO_DEFS[h.key];
-    drawRangeCircle(h.x, h.y, def.range + (h.level - 1) * 13, def.color, .12, [5, 8]);
-    ctx.save();
-    ctx.strokeStyle = withAlpha(def.color, .3 + .1 * Math.sin(game.realTime * 3));
-    ctx.lineWidth = 1.4;
-    ctx.beginPath();
-    ctx.arc(h.x, h.y + 1, 42, 0, TAU);
-    ctx.stroke();
-    ctx.fillStyle = 'rgba(7,21,16,.8)';
-    rr(ctx, h.x - 32, h.y + 51, 64, 20, 10);
-    ctx.fill();
-    ctx.strokeStyle = withAlpha(def.color, .26);
-    ctx.stroke();
-    ctx.fillStyle = def.colorSoft;
-    ctx.font = '700 9px "PingFang SC", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(`Lv.${h.level} · ${def.name}`, h.x, h.y + 64);
-    ctx.restore();
+    const units = unitsOf(game.selectedHero);
+    if (!units.length) return;
+    const def = HERO_DEFS[game.selectedHero];
+    for (const h of units) {
+      drawRangeCircle(h.x, h.y, def.range + (h.level - 1) * 13, def.color, .1, [5, 8]);
+      ctx.save();
+      ctx.strokeStyle = withAlpha(def.color, .3 + .1 * Math.sin(game.realTime * 3));
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.arc(h.x, h.y + 1, 42, 0, TAU);
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(7,21,16,.8)';
+      rr(ctx, h.x - 39, h.y + 51, 78, 20, 10);
+      ctx.fill();
+      ctx.strokeStyle = withAlpha(def.color, .26);
+      ctx.stroke();
+      ctx.fillStyle = def.colorSoft;
+      ctx.font = '700 9px "PingFang SC", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(`Lv.${h.level} · ${def.name}${units.length > 1 ? ' ×' + units.length : ''}`, h.x, h.y + 64);
+      ctx.restore();
+    }
   }
 
   function drawWalls() {
@@ -2928,7 +3067,7 @@
     }
 
     // hero name tag on hover / selected
-    if (game.hoverHero === h.key) {
+    if (game.hoverHero === h.id) {
       ctx.save();
       ctx.textAlign = 'center';
       ctx.font = '700 9px "PingFang SC", sans-serif';
@@ -4736,10 +4875,10 @@
       game.mouse.y = p.y;
       const pad = findPadAt(p.x, p.y);
       game.hoverPad = pad;
-      const heroKey = findHeroAt(p.x, p.y);
-      game.hoverHero = heroKey;
-      if (heroKey) el.canvas.style.cursor = 'pointer';
-      else if (pad >= 0 && game.selectedHero && !game.heroes.has(game.selectedHero)) el.canvas.style.cursor = 'pointer';
+      const hit = findHeroAt(p.x, p.y);
+      game.hoverHero = hit ? hit.id : null;
+      if (hit) el.canvas.style.cursor = 'pointer';
+      else if (pad >= 0 && game.selectedHero && countOf(game.selectedHero) < MAX_COPIES) el.canvas.style.cursor = 'pointer';
       else el.canvas.style.cursor = 'default';
     });
 
@@ -4751,20 +4890,19 @@
     el.canvas.addEventListener('pointerdown', e => {
       if (game.screen !== 'playing') return;
       e.preventDefault();
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
       const p = screenToWorld(e.clientX, e.clientY);
-      const heroKey = findHeroAt(p.x, p.y);
-      if (heroKey) {
-        const h = game.heroes.get(heroKey);
-        selectHero(heroKey);
-        if (h) {
-          showToast(`${HERO_DEFS[heroKey].name} · 「${HERO_DEFS[heroKey].skill}」${h.skillCd > 0 ? `冷却 ${Math.ceil(h.skillCd)} 秒` : '已就绪'}`);
-        }
+      const hit = findHeroAt(p.x, p.y);
+      if (hit) {
+        selectHero(hit.key);
+        const cd = game.skillCds[hit.key] || 0;
+        showToast(`${HERO_DEFS[hit.key].name} · 「${HERO_DEFS[hit.key].skill}」${cd > 0 ? `冷却 ${Math.ceil(cd)} 秒` : '已就绪'}`);
         return;
       }
       const pad = findPadAt(p.x, p.y);
       if (pad >= 0) {
         let occupied = false;
-        for (const [, h] of game.heroes) if (h.pad === pad) occupied = true;
+        for (const h of game.heroes.values()) if (h.pad === pad) occupied = true;
         if (game.selectedHero && !occupied) tryDeploy(pad);
         else if (occupied) {
           const h = [...game.heroes.values()].find(hh => hh.pad === pad);
@@ -4784,6 +4922,7 @@
 
     window.addEventListener('keydown', e => {
       if (e.key === ' ' || e.code === 'Space') {
+        if (e.target && e.target.closest && e.target.closest('button, [role="button"]')) return;
         if (game.screen === 'playing') {
           e.preventDefault();
           togglePause();

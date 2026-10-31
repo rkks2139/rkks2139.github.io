@@ -740,6 +740,23 @@ button:focus-visible, [tabindex]:focus-visible {
   border: 1px solid rgba(230, 242, 216, .16);
 }
 
+.copy-badge {
+  position: absolute;
+  z-index: 2;
+  right: 5px;
+  top: 5px;
+  padding: 1px 5px;
+  border-radius: 20px;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: var(--hc);
+  background: rgba(5, 17, 13, .74);
+  border: 1px solid color-mix(in srgb, var(--hc) 32%, transparent);
+}
+
+.copy-badge[hidden] { display: none; }
+
 .hero-copy {
   flex: 1;
   min-width: 0;
@@ -803,8 +820,15 @@ button:focus-visible, [tabindex]:focus-visible {
 .hero-bottom {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   margin-top: 2px;
+}
+
+.action-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
 }
 
 .price {
@@ -830,7 +854,6 @@ button:focus-visible, [tabindex]:focus-visible {
 .price b { font-weight: 700; }
 
 .mini-action {
-  margin-left: auto;
   min-width: 0;
   padding: 3px 7px;
   border-radius: 8px;
@@ -847,6 +870,14 @@ button:focus-visible, [tabindex]:focus-visible {
 .mini-action:hover { background: color-mix(in srgb, var(--hc) 24%, transparent); }
 .mini-action:disabled { opacity: .45; cursor: default; }
 .mini-action.max { color: #8aa394; border-color: rgba(231, 243, 220, .1); background: rgba(255, 255, 255, .025); }
+.mini-action.reinforce {
+  padding: 3px 5px;
+  color: var(--amber);
+  border-color: rgba(255, 210, 122, .22);
+  background: rgba(255, 210, 122, .065);
+}
+.mini-action.reinforce:hover { background: rgba(255, 210, 122, .15); }
+.mini-action.reinforce:disabled { opacity: .38; }
 
 .skills {
   flex: 1;
@@ -1347,6 +1378,8 @@ kbd {
   .hero-card { gap: 6px; padding: 7px; }
   .portrait-wrap { flex-basis: 58px; width: 58px; }
   .hero-role { display: none; }
+  .mini-action { padding: 2px 4px; font-size: 7px; }
+  .hero-bottom { gap: 3px; }
   .skill-copy small { display: none; }
 }
 
@@ -1586,6 +1619,7 @@ kbd {
   .price { font-size: 8px; }
   .mini-action { font-size: 7px; padding: 2px 5px; }
   .level-badge { font-size: 6px; padding: 1px 4px; }
+  .copy-badge { font-size: 6px; padding: 1px 4px; right: 3px; top: 3px; }
 
   .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 4px; }
   .skill-card { padding: 5px 7px; border-radius: 11px; }
@@ -1619,7 +1653,9 @@ kbd {
   .hero-bottom { margin-top: 1px; }
   .hero-name-row b { font-size: 11px; }
   .hero-role, .price { display: none; }
-  .mini-action { display: block; margin-left: 0; font-size: 6px; padding: 1px 4px; }
+  .mini-action { display: block; font-size: 6px; padding: 1px 3px; }
+  .action-group { gap: 2px; }
+  .copy-badge { font-size: 6px; padding: 0 3px; right: 2px; top: 2px; }
   .skills { gap: 3px; }
   .skill-card { padding: 4px 6px; gap: 4px; }
   .skill-glyph { flex-basis: 25px; width: 25px; height: 25px; font-size: 13px; }
