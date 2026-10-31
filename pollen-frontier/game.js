@@ -207,16 +207,18 @@
       reward: 45,
       coreDamage: 3,
       armor: .78,
+      ccResist: .65,
       color: '#d98863'
     },
     boss: {
       name: '山木 · 万蕊母株',
-      hp: 32000,
-      speed: 29,
+      hp: 40000,
+      speed: 31,
       radius: 46,
       reward: 140,
-      coreDamage: 8,
-      armor: .72,
+      coreDamage: 9,
+      armor: .7,
+      ccResist: .35,
       boss: true,
       color: '#e8795c'
     }
@@ -1627,7 +1629,7 @@
       for (const e of game.enemies) {
         if (e.dead) continue;
         if (dist(e.x, e.y, predicted.x, predicted.y) < 176) {
-          const amount = e.boss ? .28 : 1;
+          const amount = e.boss ? .08 : e.type === 'elite' ? .4 : 1;
           e.dist = Math.max(0, e.dist - 150 * amount);
           e.hitFlash = .18;
           damageEnemy(e, (82 + h.level * 30) * power, { color: '#ffd7ae', source: 'blast' });
@@ -1645,7 +1647,7 @@
     const power = 1 + (h.level - 1) * .4;
     const ahead = Math.min(PATH_LEN - 44, target.dist + 52);
     const p = pathAt(ahead, {});
-    const hp = (250 + h.level * 90) * power;
+    const hp = (160 + h.level * 45) * power;
     const wall = {
       dist: ahead,
       x: p.x,
@@ -1683,6 +1685,8 @@
   function applySlow(e, factor, duration) {
     if (e.dead) return;
     if (duration > 0) {
+      const resist = e.ccResist || 1;
+      factor = 1 - (1 - factor) * resist;
       if (factor < e.slowFactor || game.time > e.slowUntil) {
         e.slowFactor = factor;
         e.slowUntil = game.time + duration;
@@ -1694,7 +1698,7 @@
 
   function stunEnemy(e, duration) {
     if (e.dead) return;
-    e.stunUntil = Math.max(e.stunUntil, game.time + duration);
+    e.stunUntil = Math.max(e.stunUntil, game.time + duration * (e.ccResist || 1));
   }
 
   function applyMark(e, duration, mult) {
@@ -1954,9 +1958,9 @@
         e.blocked = true;
         if (e.attackCd <= 0) {
           e.attackCd = e.boss ? .75 : .85 + Math.random() * .3;
-          blocked.hp -= e.boss ? 38 : e.type === 'elite' ? 17 : 8;
+          blocked.hp -= e.boss ? 72 : e.type === 'elite' ? 24 : 10;
           blocked.flash = .16;
-          addText(blocked.x + (Math.random() - .5) * 30, blocked.y - 58, e.boss ? 38 : 8, '#a9c8ff', 9, .4);
+          addText(blocked.x + (Math.random() - .5) * 30, blocked.y - 58, e.boss ? 72 : e.type === 'elite' ? 24 : 10, '#a9c8ff', 9, .4);
           spawnBurst(blocked.x + (Math.random() - .5) * 30, blocked.y - 28, '#8fbaff', 3, { speed: 40, size: 1.8, life: .3, gravity: 0 });
           if (blocked.hp <= 0) {
             const idx = game.walls.indexOf(blocked);
@@ -1986,7 +1990,7 @@
       if (e.type === 'boss') {
         e.spawnTimer -= dt;
         if (e.spawnTimer <= 0 && e.dist < PATH_LEN - 120) {
-          e.spawnTimer = 3.6;
+          e.spawnTimer = 3.2;
           spawnEnemy('fluff', true, Math.max(0, e.dist - 16 - Math.random() * 28));
           addRing(e.x, e.y - 10, 15, 70, .5, '#f6c27c', 3);
         }
@@ -2111,7 +2115,7 @@
   function spawnEnemy(type, fromBoss, atDist) {
     const base = ENEMY_DEFS[type];
     if (!base) return;
-    const waveScale = 1 + (game.wave - 1) * .42;
+    const waveScale = 1 + (game.wave - 1) * .18 + Math.pow(Math.max(0, game.wave - 4), 2) * .16;
     const hpScale = type === 'boss' ? 1 : waveScale;
     const speedScale = 1 + (game.wave - 1) * .022;
     const e = {
@@ -2140,6 +2144,7 @@
       markMult: 1,
       blocked: false,
       boss: !!base.boss,
+      ccResist: base.ccResist || 1,
       spawnTimer: 4.5,
       wobble: 0,
       hover: 0,
