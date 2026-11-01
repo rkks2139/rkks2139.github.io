@@ -1,8 +1,9 @@
 # 用 GitHub Pages 跑「神人工具箱」
 
-> **当前状态**：本目录已经完成 `git init`、首次提交，并把 `origin` 指向
-> `https://github.com/rkks2139/rkks2139.github.io.git`。
-> 剩余两步需要你的 GitHub 账号：创建空仓库、授权 push。当前机器没有 GitHub 登录凭据。
+> **当前状态**：站点已上线。
+> 仓库：https://github.com/rkks2139/rkks2139.github.io
+> 地址：https://rkks2139.github.io/
+> Pages：main 分支 / 根目录；仓库为 Public。
 
 可以。整套东西是纯静态 HTML / CSS / JS / Canvas，GitHub Pages 能直接托管。
 不需要 Node、不需要数据库、不需要服务器。

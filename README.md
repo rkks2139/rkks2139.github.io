@@ -7,4 +7,4 @@
 - 兼容 Windows 7（Chrome / Edge 109）、Windows 11、macOS
 - GitHub Pages 部署说明见 [GITHUB-PAGES.md](GITHUB-PAGES.md)
 
-部署目标：<https://rkks2139.github.io/>
+站点已上线：<https://rkks2139.github.io/>
