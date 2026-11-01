@@ -52,8 +52,8 @@ git remote set-url origin https://github.com/rkks2139/<仓库名>.git
 
 ## 文件大小与限制
 
-- 最大单文件是 `downloads/DanceLab-Windows7.zip`（73 MB），低于 GitHub 单文件 100 MB 硬限制。
-- 4kYOU 单文件约 65 MB；GitHub 会提示“超过 50 MB”，这是警告，不是失败。
+- 最大单文件是 `pulse4k/4kYOU.html`（66.33 MB），低于 GitHub 单文件 100 MB 硬限制。
+- 4kYOU 单文件约 66 MB；GitHub 会提示“超过 50 MB”，这是警告，不是失败。
 - 整站建议控制在 1 GB 以内；GitHub Pages 的站点上限是 1 GB。
 - **不要用 Git LFS 托管站点文件**：GitHub Pages 不保证提供 LFS 内容。
 - GitHub Pages 有每月约 100 GB 的软带宽限制。4kYOU 和 73 MB 的舞动实验室包比较吃流量，分享给很多人时建议把大 ZIP 改放到 GitHub Releases。
